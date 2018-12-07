@@ -186,7 +186,6 @@ mem_init(void)
 	envs = (struct Env *) boot_alloc(NENV * sizeof(struct Env));
 	memset(envs, 0, NENV * sizeof(struct Env));
 
-	//////////////////////////////////////////////////////////////////////
 	// Now that we've allocated the initial kernel data structures, we set
 	// up the list of free physical pages. Once we've done so, all further
 	// memory management will go through the page_* functions. In
@@ -220,6 +219,7 @@ mem_init(void)
 	psize = ROUNDUP(sizeof(struct Env) * NENV, PGSIZE);
 	boot_map_region(kern_pgdir, UENVS, psize, PADDR(envs), (PTE_U |PTE_P));
 	//////////////////////////////////////////////////////////////////////
+
 	// Use the physical memory that 'bootstack' refers to as the kernel
 	// stack.  The kernel stack grows down from virtual address KSTACKTOP.
 	// We consider the entire range from [KSTACKTOP-PTSIZE, KSTACKTOP)
